@@ -1,0 +1,66 @@
+{
+  "manifest_version": 2,
+  "version": "1.0",
+  "name": "Discount Bandit",
+
+
+  "description": "Get Your pro  ducts data into stores to analyze it",
+
+
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "discount-bandit@cybrarist.com"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.amazon.ae/*" ,
+        "https://*.amazon.com/*" ,
+        "https://*.amazon.ca/*" ,
+        "https://*.amazon.co.uk/*" ,
+        "https://*.amazon.de/*" ,
+        "https://*.amazon.fr/*" ,
+        "https://*.amazon.it/*" ,
+        "https://*.amazon.sa/*" ,
+        "https://*.amazon.es/*" ,
+        "https://*.amazon.pl/*" ,
+        "https://*.amazon.com.tr/*" ,
+        "https://*.amazon.com.au/*" ,
+        "https://*.amazon.com.br/*" ,
+        "https://*.amazon.cn/*" ,
+        "https://*.amazon.eg/*" ,
+        "https://*.amazon.co.jp/*" ,
+        "https://*.amazon.in/*" ,
+        "https://*.amazon.com.mx/*" ,
+        "https://*.amazon.nl/*" ,
+        "https://*.amazon.sg/*" ,
+        "https://*.amazon.se/*" ,
+        "https://*.amazon.com.be/*"
+      ],
+      "js" : [ "resources/apexcharts.js" , "amazon.js"],
+      "css": ["resources/css/style.css"]
+    }
+  ],
+
+
+
+  "icons": {
+    "16": "resources/images/bandit.png",
+    "32": "resources/images/bandit.png",
+    "48": "resources/images/bandit.png",
+    "64": "resources/images/bandit.png",
+    "96": "resources/images/bandit.png"
+  }
+}
