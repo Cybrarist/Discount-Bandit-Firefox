@@ -4,8 +4,10 @@ class Product {
     price;
     rate;
     number_of_rates;
+    seller;
     url;
     update_product;
+    in_stock=true;
     #token;
 
     storage_promise;
@@ -13,6 +15,11 @@ class Product {
     constructor() {
         this.storage_promise= this.get_storage_data()
     }
+
+    /**
+     * urls on the server api.
+     * @returns {string}
+     */
 
     update_url () {
         return `${this.url}/api/products/update`
@@ -24,18 +31,24 @@ class Product {
         return `${this.url}/api/products/create`
     };
 
+    /**
+     * get the data saved in the browser
+     * @returns {Promise<void>}
+     */
+
     async get_storage_data(){
         var result= await  browser.storage.sync.get()
         this.#token= result.token;
         this.url=result.url;
         this.update_product=result.update_product;
-
-        console.log(this.#token)
     }
+
+
 
     async  update_server_product(){
         await this.storage_promise
-        if (!self.update_product)
+
+        if (!this.update_product)
             return
 
          fetch(this.update_url() ,{
@@ -71,12 +84,11 @@ class Product {
             })
 
         })
-            .then(response => {
+            .then((response) => {
                 return response.json();
             })
             .catch(error => {
-                // Handle errors
-                console.log("Error:", error);
+                // product doesn't exist in the system
             });
     }
 
@@ -107,7 +119,6 @@ class Product {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 if (data.errors)
                     add_notification_to_page('danger' , 'Something wrong Happened')
                 else
@@ -117,11 +128,11 @@ class Product {
                                 <p>
                                     <a href='${data.link} '> ${data.link} </a>
                                 </p>`
-                    )
+                     )
 
             })
             .catch(error => {
-                add_notification_to_page('danger' , 'Something wrong Happened')
+                add_notification_to_page('danger' , 'Something wrong Happened here')
             });
     }
 
@@ -143,10 +154,12 @@ class Product {
 
         product.populate_dom_with_charts()
 
-        document.getElementById("submit_discount_form")
-            .addEventListener("click" , function (){
-                product.submit_form()
-            })
+        setTimeout(() => {
+            document.getElementById("submit_discount_form")
+                .addEventListener("click" , function (){
+                    product.submit_form()
+                })
+        }, 2000);
 
         product.get_product_data().then(response => {
 
@@ -156,15 +169,24 @@ class Product {
 }
 
 
-let previousUrl = '';
+
+
+let previousUrl = null;
 const observer = new MutationObserver(function(mutations) {
-    if (location.href !== previousUrl) {
-        previousUrl = location.href;
+
+    current_url=new URL(location.href)
+
+    if (current_url.pathname !== previousUrl?.pathname) {
+        previousUrl = new URL(location.href);
         product.refresh_dom_all()
     }
 });
+
 const config = {subtree: true, childList: true};
 observer.observe(document, config);
 
 
 
+
+//share the url across all classes
+var current_url = new URL(window.location.href);

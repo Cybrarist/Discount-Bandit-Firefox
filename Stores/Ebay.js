@@ -40,7 +40,7 @@ if (window.location.href.includes('ebay.') ){
                 document.querySelector('[data-testid="x-price-primary"]')
                     .insertAdjacentHTML("afterbegin" ,
                     `<div class="lowest_price" > Lowest Price ${data.prices[data.current_store_id]?.lowest_price.toLocaleString()}</div>
-             <div class="max_price" "> Highest Price ${data.prices[data.current_store_id]?.highest_price.toLocaleString()}</div>`
+             <div class="highest_price" "> Highest Price ${data.prices[data.current_store_id]?.highest_price.toLocaleString()}</div>`
                 )
 
                 //add open in Discount Bandit

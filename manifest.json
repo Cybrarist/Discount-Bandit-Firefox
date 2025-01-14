@@ -60,6 +60,7 @@
         "Stores/Noon.js",
 
 
+
         "functions.js" , "stores.js"],
       "css": ["resources/css/style.css"]
     }

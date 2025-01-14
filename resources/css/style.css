@@ -1,12 +1,13 @@
 #gray_layout{
     position: fixed;
     background: #99999969;
-    z-index: 200;
     height: 100vh;
     width: 100vw;
     display: none;
     justify-content: center;
     align-items: center;
+    top: 0;
+    z-index: 10000;
 }
 
 .show_flex{
@@ -76,6 +77,7 @@
 #discount_bandit_show {
     cursor: pointer !important;
     max-width: 50px;
+    max-height: 50px;
 }
 
 #submit_discount_form{
@@ -143,11 +145,11 @@
 .lowest_price{
     color: #60a220;
 }
-.max_price{
+.highest_price{
     color: #dc3545;
 }
 
-.lowest_price , .max_price{
+.lowest_price , .highest_price{
     width: 100%;
     display: flex;
 }
