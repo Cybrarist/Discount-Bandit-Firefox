@@ -1,16 +1,19 @@
 function saveOptions(e) {
-
     e.preventDefault();
     browser.storage.sync.set({
-        url: document.querySelector("#url").value,
-        token: document.querySelector("#token").value,
+        url: document.getElementById("url").value,
+        token: document.getElementById("token").value,
+        update_product: document.getElementById("update_product").checked,
     });
+
+    alert('data saved successfully')
 }
 
 function restoreOptions() {
     function setCurrentChoice(result) {
-        document.querySelector("#url").value = result.url || "";
-        document.querySelector("#token").value = result.token || "";
+        document.getElementById("url").value = result.url || "";
+        document.getElementById("token").value = result.token || "";
+        document.getElementById("update_product").checked = result.update_product || "";
     }
     function onError(error) {
         console.log(`Error: ${error}`);
@@ -21,4 +24,5 @@ function restoreOptions() {
 }
 
 document.addEventListener("DOMContentLoaded", restoreOptions);
+
 document.querySelector("form").addEventListener("submit", saveOptions);
