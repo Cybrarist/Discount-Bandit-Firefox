@@ -111,7 +111,7 @@ class Product {
                 favourite: document.getElementById("favourite").checked,
                 stock_available: document.getElementById("stock_available").checked,
                 lowest_within: document.getElementById("lowest_within").value,
-                number_of_rates:this.number_of_rates,
+                number_of_rates:this.number_of_rates ?? 0,
                 price:this?.price ?? 0,
             })
         })

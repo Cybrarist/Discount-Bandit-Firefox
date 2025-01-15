@@ -16,7 +16,6 @@ class Amazon extends Product {
             .replaceAll("(" , "")
             .replaceAll(")" , "")
 
-        console.log(this.number_of_rates)
 
     }
 

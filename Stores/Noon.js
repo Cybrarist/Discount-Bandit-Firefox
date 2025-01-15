@@ -37,7 +37,10 @@ class Noon extends Product {
 
         super.get_product_data().then(data => {
          //
-            insert_chart_into_dom(data.series)
+            if (!data)
+                return;
+
+           insert_chart_into_dom(data.series)
             //add highest and lowest prices
             document.querySelector(".priceNow[data-qa='div-price-now']").insertAdjacentHTML("beforebegin" ,
                 `<div class="lowest_price" > Lowest Price ${data.prices[data.current_store_id].lowest_price.toLocaleString()}</div>

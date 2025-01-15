@@ -108,8 +108,6 @@ function insert_chart_into_dom(series){
 
 function  get_global_form(){
 
-    console.log(product)
-
     return` <div class="form_background">
                    <div class="form_field">
                        <label> Product Name </label>
@@ -137,11 +135,7 @@ function  get_global_form(){
                    </div>
                     <button  id="submit_discount_form"> Save </button>           
                 </div>
-`
-
-
-
-}
+`}
 
 
 

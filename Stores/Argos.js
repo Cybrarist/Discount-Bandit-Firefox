@@ -61,7 +61,8 @@ if (window.location.href.includes('argos.co.uk') ){
                         )
                     setTimeout(() => {
 
-
+                        if (!data)
+                            return;
                         insert_chart_into_dom(data.series)
 
                         var stores_elements=document.getElementById("all_stores_cards");

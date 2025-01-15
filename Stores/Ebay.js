@@ -31,9 +31,8 @@ if (window.location.href.includes('ebay.') ){
         async get_product_data() {
 
             super.get_product_data().then(data => {
-
-
-                console.log(data)
+                if (!data)
+                    return;
 
                 insert_chart_into_dom(data.series)
                 //add highest and lowest prices
