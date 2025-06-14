@@ -24,15 +24,36 @@ class Amazon extends Product {
         document.body.insertAdjacentHTML("afterbegin" , `<div id='gray_layout' 
     onclick="if (event.target === event.currentTarget) this.classList.remove('show_flex')">${get_global_form()}</div>`)
 
-        document.body.querySelector("#title_feature_div")
-            .insertAdjacentHTML('afterend', `<img id="discount_bandit_show"  
-        src="${browser.runtime.getURL(`resources/images/bandit.png`)}"
-        onclick='document.body.querySelector("#gray_layout").classList.add("show_flex")'>`)
+        var listing_title=document.body.querySelector("#title_feature_div")
+        
+        if (listing_title == null) {
+            console.warn('First title query selector failed, trying fallback...')
+            listing_title=document.body.querySelector("#titleblock_feature_div")
 
-        //add the chart and stores
-        var main_body=document.body.querySelector("#ppd")
-        main_body.insertAdjacentHTML("afterend" , "<div id='chart'></div>")
-        main_body.insertAdjacentHTML("afterend" , "<div id='all_stores_cards'></div>")
+            if (listing_title == null) {
+                console.error('Fallback title query selector failed - element not found')
+            } else {
+                listing_title
+                    .insertAdjacentHTML('afterend', `<img id="discount_bandit_show"  
+            src="${browser.runtime.getURL(`resources/images/bandit.png`)}"
+            onclick='document.body.querySelector("#gray_layout").classList.add("show_flex")'>`)
+
+                //add the chart and stores
+                var main_body=document.body.querySelector("#andonCord_feature_div")
+                main_body.insertAdjacentHTML("afterend" , "<div id='chart'></div>")
+                main_body.insertAdjacentHTML("afterend" , "<div id='all_stores_cards'></div>")
+            }
+        } else {
+            listing_title
+                .insertAdjacentHTML('afterend', `<img id="discount_bandit_show"  
+            src="${browser.runtime.getURL(`resources/images/bandit.png`)}"
+            onclick='document.body.querySelector("#gray_layout").classList.add("show_flex")'>`)
+
+            //add the chart and stores
+            var main_body=document.body.querySelector("#ppd")
+            main_body.insertAdjacentHTML("afterend" , "<div id='chart'></div>")
+            main_body.insertAdjacentHTML("afterend" , "<div id='all_stores_cards'></div>")
+        }
     }
 
     async get_product_data() {
